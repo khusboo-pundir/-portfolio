@@ -204,6 +204,7 @@ footer {
     width: 100%;
     display: none;
     padding: 20px;
+    marign:30px
   }
 
   .nav-links.active {
