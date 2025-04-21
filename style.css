@@ -203,6 +203,7 @@ footer {
     right: 0;
     width: 100%;
     display: none;
+    padding: 20px;
   }
 
   .nav-links.active {
