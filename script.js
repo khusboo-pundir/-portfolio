@@ -1,26 +1,95 @@
-// Dark mode toggle
-const toggle = document.getElementById('darkModeToggle');
+
+// ================================
+// DARK MODE
+// ================================
+
+const toggle = document.getElementById("darkModeToggle");
 const body = document.body;
 
-if (localStorage.getItem('theme') === 'dark') {
-  body.classList.add('dark-mode');
+if (localStorage.getItem("theme") === "dark") {
+  body.classList.add("dark-mode");
+
+  if (toggle) {
+    toggle.textContent = "☀️";
+  }
 }
 
-toggle.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
-});
+if (toggle) {
+  toggle.addEventListener("click", () => {
 
-// Contact form alert
-const form = document.querySelector('.contact-form');
-form.addEventListener('submit', () => {
-  alert('Thank you! Your message has been sent to Khushboo.');
-});
+    body.classList.toggle("dark-mode");
 
-// Navbar toggle for mobile
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
+    const isDarkMode = body.classList.contains("dark-mode");
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
+    localStorage.setItem(
+      "theme",
+      isDarkMode ? "dark" : "light"
+    );
+
+    toggle.textContent = isDarkMode ? "☀️" : "🌙";
+  });
+}
+
+
+// ================================
+// MOBILE NAVBAR
+// ================================
+
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+
+if (menuToggle && navLinks) {
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+
+
+  // Close menu after clicking a navigation link
+
+  const navItems = navLinks.querySelectorAll("a");
+
+  navItems.forEach((link) => {
+
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("active");
+    });
+
+  });
+
+}
+
+
+// ================================
+// CONTACT FORM
+// ================================
+
+const form = document.querySelector(".contact-form");
+
+if (form) {
+
+  form.addEventListener("submit", () => {
+
+    alert(
+      "Thank you for contacting me! Your message has been sent successfully."
+    );
+
+  });
+
+}
+
+
+// ================================
+// CURRENT YEAR
+// ================================
+
+const footer = document.querySelector("footer p");
+
+if (footer) {
+
+  const currentYear = new Date().getFullYear();
+
+  footer.innerHTML =
+    `© ${currentYear} Khushboo Pundir. All Rights Reserved.`;
+
+}
